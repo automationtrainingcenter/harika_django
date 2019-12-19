@@ -1,0 +1,30 @@
+{% extends 'templateApp\base.html' %}
+{% block content %}
+<h1>More from Template Data</h1>
+
+{% if is_valid %}
+<table border="2">
+    <tbody>
+        <tr>
+            <th>Name</th>
+            <td>{{name | upper}}</td>
+        </tr>
+        <tr>
+            <th>Phone Num</th>
+            <td>{{phone_num}}</td>
+        </tr>
+        <tr>
+            <th>courses</th>
+            <td>
+                {% for course in courses %}
+                {{course | title}}
+                <br />
+                {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% else %}
+<h2>Data not availabe</h2>
+{% endif %}
+{% endblock %}
