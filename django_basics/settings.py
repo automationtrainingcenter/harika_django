@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'hello',
     'urlApp',
     'templateApp',
+    'modelApp',
 ]
 
 MIDDLEWARE = [
