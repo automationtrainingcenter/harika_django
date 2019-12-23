@@ -1,0 +1,95 @@
+retreive all the data from the model 
+qs = Employee.objects.all()
+
+retreive one data from the model
+emp = Employee.objects.get(id=1)
+print(emp.firstname)
+
+to get the sql query
+print(qs.query)
+
+inset the data
+e = Employee(firstname='satish', lastname='kumar', salary=10000)
+e.save()
+
+Employee.objects.create(firstname='uday', lastname='kiran', salary=15000)
+
+inserting mulitple records
+Employee.objects.bulk_create([Employee(firstname='', lastname='', salary=)], [Employee(firstname='', lastname='', salary=)])
+
+delete the data
+e = Employee.objects.get(id=1)
+e.delete()
+
+delete the multiple records
+qs = Employee.objects.filter(salary__gt=5000)
+qs.delete()
+
+delete all the records
+qs = Employee.objects.all()
+qs.delete()
+
+update the data
+e = Employee.objects.get(id=2)
+e.firstname = 'harish'
+e.save()
+
+to filter data
+emps = Employee.objects.filter(salary__gt =5000)
+emps = Employee.objects.filter(salary__gte =5000)
+emps = Employee.objects.filter(salary__lt =5000)
+emps = Employee.objects.filter(salary__lte =5000)
+emps = Employee.objects.filter(firstname__contains ='surya')
+emps = Employee.objects.filter(firstname__icontains ='Surya')
+emps = Employee.objects.filter(firstname__startswith ='surya')
+emps = Employee.objects.filter(firstname__endswith ='rya')
+emps = Employee.objects.filter(id__in=[1:2])
+
+using logical and or not operator
+emps = Employee.objects.filter(firstname__startswith='sury') | Employee.objects.filter(lastname__startswith('prak')
+
+from django.db.models import Q
+emps = Employee.objects.filter(Q(firstname__startswith='sur') | Q(lastname__startswith='pra'))
+emps = Employee.objects.filter(Q(firstname__startswith='sur') & Q(lastname__startswith='pra'))  # and
+emps = Employee.objects.filter(firstname__startswith = 'su', lastname__endswith='pra')  # and
+to use not we have to exclude()
+emps = Employee.objects.exclude(salary__gt=5000)
+
+
+select only some columns
+emps = Employee.objects.all().values_list('firstname', 'salary')
+emps = Employee.objects.all().values('firstname', 'salary')
+emps = Employee.objects.all().only('firstname', 'salary') returns id also
+
+aggregate functions
+from django.db.models import Avg, Sum, Max, Min, Count
+avg = Employee.objects.all().aggregate(Avg('salary'))
+sum = Employee.objects.all().aggregate(Sum('salary'))
+max = Employee.objects.all().aggregate(Max('salary'))
+min = Employee.objects.all().aggregate(Min('salary'))
+count = Employee.objects.all().aggregate(Count('salary'))
+
+order by
+es = Employee.objects.all().order_by('salary') 
+ascending order of the salary
+
+es = Employee.objects.all().order_by('-salary')
+descending order of the salary
+
+es = Employee.objects.all().order_by('salary')[0]
+first record from the sorted data
+
+es = Employee.objects.all().order_by('salary')[0:3]
+first three records from the sorted data
+
+es = Employee.objects.all().order_by('firstname')
+sort the data alphabetically by considering the case
+
+to ignore the case
+from django.db.models.functions import Lower
+es = Employee.objects.all().order_by(Lower('firstname'))
+
+
+
+
+
