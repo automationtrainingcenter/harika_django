@@ -11,3 +11,29 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.first_name
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class Programmer(models.Model):
+    name = models.CharField(max_length=30)
+    salary = models.IntegerField()
+    projects = models.ManyToManyField(Project)
+
+    def __str__(self):
+        return self.name
+
+
+class PhoneNumber(models.Model):
+    number_type = models.CharField(max_length=10)
+    number = models.CharField(max_length=10)
+    progrmmer = models.ForeignKey(Programmer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.number)
