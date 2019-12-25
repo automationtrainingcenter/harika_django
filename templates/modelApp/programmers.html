@@ -1,0 +1,30 @@
+{% extends 'templateApp\base.html' %}
+
+{% block content %}
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">name</th>
+            <th scope="col">salary</th>
+            <th scope="col">projects</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for programmer in programmers %}
+        <tr>
+            <th scope="row">{{programmer.id}}</th>
+            <td>{{programmer.name}}</td>
+            <td>{{programmer.salary}}</td>
+            <td>
+
+                {% for project in programmer.projects.all %}
+                <a href="/modelApp/{{project.name}}/info">{{project | upper}}</a>,
+                {% endfor %}
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

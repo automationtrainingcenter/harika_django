@@ -20,5 +20,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index),
     url(r'^urlapp/', include('urlApp.urls')),
-    url(r'^templateApp/', include('templateApp.urls'))
+    url(r'^templateApp/', include('templateApp.urls')),
+    url(r'^modelApp/', include('modelApp.urls'))
+
 ]

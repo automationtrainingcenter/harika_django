@@ -37,3 +37,14 @@ class PhoneNumber(models.Model):
 
     def __str__(self):
         return str(self.number)
+
+
+class License(models.Model):
+    license_type = models.CharField(max_length=10)
+    number = models.CharField(max_length=10)
+    valid_until = models.DateField()
+    valid_from = models.DateField(auto_now_add=True)
+    programmer = models.OneToOneField(Programmer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.number
