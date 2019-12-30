@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'urlApp',
     'templateApp',
     'modelApp',
+    'formsApp',
 ]
 
 MIDDLEWARE = [

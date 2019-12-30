@@ -1,0 +1,18 @@
+{% extends 'templateApp/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4">
+            <form method="post" class="form-group">
+                {% csrf_token %}
+                <input type="text" class="form-control" name="fullname" id="fname" placeholder="enter your full name">
+                <br><input type="text" class="form-control" name="email" id="email" placeholder="enter your email">
+                <br><input type="text" class="form-control" name="phnum" placeholder="enter your phone number">
+                <br><input type="submit" class="btn btn-primary btn-active" value="Sign In">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
