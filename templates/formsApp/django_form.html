@@ -1,0 +1,17 @@
+{% extends 'templateApp/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
