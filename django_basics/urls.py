@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^templateApp/', include('templateApp.urls')),
     url(r'^modelApp/', include('modelApp.urls')),
     url(r'^formsApp/', include('formsApp.urls')),
+    url(r'^crudApp/', include('crudApp.urls'))
 
 ]
