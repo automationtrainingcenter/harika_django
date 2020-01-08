@@ -133,3 +133,5 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+LOGOUT_REDIRECT_URL = '/crudApp/logout/'

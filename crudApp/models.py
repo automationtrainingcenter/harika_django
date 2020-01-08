@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -12,3 +13,6 @@ class Student(models.Model):
 
     def __repr__(self):
         return self.fullname
+
+    def get_absolute_url(self):
+        return reverse('cbv_student_detail', kwargs={'pk': self.pk})

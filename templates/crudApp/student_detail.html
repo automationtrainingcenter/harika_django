@@ -1,0 +1,21 @@
+{% extends 'templateApp/base.html' %}
+
+{% block content %}
+<div class="container">
+    <ul>
+        <li>
+            <h3>Full Name : {{ student.fullname | title }}</h3>
+        </li>
+        <li>
+            <h3>Course : {{ student.course | title }}</h3>
+        </li>
+        <li>
+            <h3>Fee : {{ student.fee }}</h3>
+        </li>
+    </ul>
+    <a href="{% url 'cbv_student_list' %}">Students List</a>
+    <br>
+    <a href="{% url 'cbv_update' student.id %}">Update</a>
+
+</div>
+{% endblock content %}

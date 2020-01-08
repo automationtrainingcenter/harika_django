@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from hello.views import index
+from crudApp.views import logout
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index),
@@ -23,6 +24,7 @@ urlpatterns = [
     url(r'^templateApp/', include('templateApp.urls')),
     url(r'^modelApp/', include('modelApp.urls')),
     url(r'^formsApp/', include('formsApp.urls')),
-    url(r'^crudApp/', include('crudApp.urls'))
+    url(r'^crudApp/', include('crudApp.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
 
 ]
