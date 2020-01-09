@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from crudApp.models import Student
 from crudApp.forms import StudentForm
 from django.contrib import messages
@@ -42,6 +44,7 @@ def updateStudent(request, id):
 
 
 @login_required
+@permission_required('crudApp.student_delete')
 def deleteStudent(request, id):
     student = Student.objects.get(id=id)
     if student:
@@ -57,28 +60,33 @@ def logout(request):
 
 
 # implementing crud operation using class based views
-class StudentListView(ListView):
+class StudentListView(LoginRequiredMixin, ListView):
     model = Student
     # default template_name is modelName_list.html i.e student_list.html
     # default context_object_name is modelName_list i.e. student_list
 
 
-class StudentDetailView(DetailView):
+class StudentDetailView(LoginRequiredMixin, DetailView):
     model = Student
     # default template_name is modelName_detail.html i.e student_detail.html
     # default context_object_name is modelName in lower case i.e. student
 
 
-class StudentCreateView(CreateView):
+class StudentCreateView(LoginRequiredMixin, CreateView):
     model = Student
     fields = ('fullname', 'course', 'fee')
     # default template_name is modelName_form.html i.e student_form.html
     # default context_object_name is form
 
 
-class StudentUpdateView(UpdateView):
+class StudentUpdateView(LoginRequiredMixin, UpdateView):
     model = Student
     fields = ('course', 'fee')
     # default template_name is modelName_form.html i.e student_form.html
     # default context_object_name is form
-    
+
+
+class StudentDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    model = Student
+    permission_required='crudApp.student_delete'
+    success_url = reverse_lazy('cbv_student_list')

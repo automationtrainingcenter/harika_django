@@ -38,10 +38,11 @@
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
                 {% endif %}
-
-
             </ul>
         </div>
+
+        <h4 class="text-right">{{ user.username }}</h4>
+
     </nav>
     {% block content%}
 

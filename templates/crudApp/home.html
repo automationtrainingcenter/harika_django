@@ -19,7 +19,11 @@
             <td>{{student.course}}</td>
             <td>{{student.fee}}</td>
             <td><a href="{% url 'update' student.id %}">Update</a></td>
+
+            {% if perms.crudApp.delete_student %}
             <td><a href="{% url 'delete' student.id %}">Delete</a></td>
+            {% endif %}
+
 
         </tr>
         {% endfor %}

@@ -16,6 +16,10 @@
     <a href="{% url 'cbv_student_list' %}">Students List</a>
     <br>
     <a href="{% url 'cbv_update' student.id %}">Update</a>
+    <br>
+    {% if perms.crudApp.delete_student %}
+    <a href="{% url 'cbv_delete' student.id %}">Delete</a>
+    {% endif %}
 
 </div>
 {% endblock content %}
