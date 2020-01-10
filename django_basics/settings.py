@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'modelApp',
     'formsApp',
     'crudApp',
+    'sessionApp',
 ]
 
 MIDDLEWARE = [

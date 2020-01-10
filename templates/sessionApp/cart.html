@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Items in you Cart</h1>
+
+    {% if request.session %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for item, quantity in request.session.items %}
+            {% if 'user' not in item and 'count' not in item %}
+            <tr>
+                <td>{{ item }}</td>
+                <td>{{ quantity }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+
+        </tbody>
+    </table>
+    <span><a href="{% url 'products' %}">Click Here</a> to Add Products to the Cart</span>
+    {% else %}
+    <h2>Cart Is Empty</h2>
+
+    {% endif %}
+
+
+
+</body>
+
+</html>

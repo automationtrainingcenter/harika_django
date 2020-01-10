@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^formsApp/', include('formsApp.urls')),
     url(r'^crudApp/', include('crudApp.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^sessionApp/', include('sessionApp.urls')),
 
 ]
